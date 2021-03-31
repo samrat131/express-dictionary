@@ -5,14 +5,44 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title %></title>
+  <link rel="stylesheet" href="http://localhost:3000/static/css/styles.css">
 </head>
 <body>
   
-  <ul>
-    
+  <!-- <ul>
     <% for (const prop in words) { %>
       <li><%= prop %> : <%= words[prop] %> </li>
     <% } %>
-  </ul>
+  </ul> -->
+
+  <div class="wrap">
+    <table>
+      <% for (const prop in words) { %>
+        
+        <tr>
+          <td class="eng">
+            <%= prop %>
+          </td>
+          
+          <td class="translate">
+            <span onclick="document.getElementById('word-<%= prop %>').style.display = 'inline-block';" class="show">
+              Show
+            </span>
+          </td>
+          
+          <td class="search">
+            <a target="_blank" href="https://www.google.com/search?q=<%= prop %>+meaning">Google</a>
+          </td>
+          
+          <td class="bng">
+            <span id="word-<%= prop %>" class="word" style="display: none;">
+              <%= words[prop] %>
+            </span>
+          </td>
+        </tr>
+        
+        <% } %>
+    </table>
+  </div>
 </body>
 </html>

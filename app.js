@@ -1,13 +1,12 @@
 const fs =  require('fs')
 const express = require('express')
+const path = require('path')
 const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
 
 app.set('view engine', 'ejs')
-
-
-
+app.use('/static', express.static(path.join(__dirname, 'public')))
 
 const readFile = ((req, res, next) => {
   
@@ -41,16 +40,6 @@ app.get('/', (req, res) => {
     
     if(err) console.log(err)
     data = JSON.parse(data)
-    // data.crowd = "vir kora"
-
-    // data = JSON.stringify(data)
-    
-    // fs.writeFile('./words.json', data, (err) => {
-    //   if(err) console.log(err)
-    //   console.log('file saved')
-    // })
-
-    console.log(data)
 
     res.render('index', { 
       title: 'Dictionary', 
